@@ -1,4 +1,4 @@
-package com.openclassrooms.shop.service;
+ package com.openclassrooms.shop.service;
 
 
 import com.openclassrooms.shop.domain.Product;
@@ -50,3 +50,4 @@ public class ProductServiceTest {
     }
 
 }
+

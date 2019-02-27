@@ -5,7 +5,9 @@ import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+//import java.util.Comparator;
 import java.util.List;
+//import java.util.stream.Collectors;
 import java.util.stream.Collectors;
 
 /**
@@ -16,7 +18,7 @@ import java.util.stream.Collectors;
 
 @Repository
 public class ProductRepository {
-    private static List<Product> products;
+    private  List<Product> products;
 
     public ProductRepository()
     {
@@ -40,10 +42,15 @@ public class ProductRepository {
     /**
      * @return All products from the inventory
      */
-    public Product[] findAll()
+    public List<Product> findAll()
     {
-        return products.stream().filter(p -> p.getStock() > 0).sorted(Comparator.comparing(Product::getName)).toArray(Product[]::new);
+        
+        return products.stream().filter(p -> p.getStock() > 0).sorted(Comparator.comparing(Product::getName))
+				.collect(Collectors.toList());
     }
+    public Product getProductById(Long productId) {
+		return products.stream().filter(p -> p.getId() == productId).findFirst().get();
+	}
 
     /**
      * @param productId ID of the getProductById
